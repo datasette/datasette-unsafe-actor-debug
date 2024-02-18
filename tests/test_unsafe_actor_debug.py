@@ -1,11 +1,21 @@
-from datasette.app import Datasette
+from datasette_test import Datasette
 import pytest
 
 
 @pytest.mark.asyncio
-async def test_unsafe_actor_debug():
-    datasette = Datasette()
+@pytest.mark.parametrize("enabled", (True, False))
+async def test_unsafe_actor_debug(enabled):
+    datasette = Datasette(
+        plugin_config={
+            "datasette-unsafe-actor-debug": {
+                "enabled": enabled,
+            }
+        }
+    )
     response = await datasette.client.get("/-/unsafe-actor")
+    if not enabled:
+        assert response.status_code == 404
+        return
     assert response.status_code == 200
     cookies = response.cookies
     assert "ds_csrftoken" in cookies

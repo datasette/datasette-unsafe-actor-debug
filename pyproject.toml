@@ -24,7 +24,7 @@ CI = "https://github.com/datasette/datasette-unsafe-actor-debug/actions"
 unsafe_actor_debug = "datasette_unsafe_actor_debug"
 
 [project.optional-dependencies]
-test = ["pytest", "pytest-asyncio"]
+test = ["pytest", "pytest-asyncio", "datasette-test"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"

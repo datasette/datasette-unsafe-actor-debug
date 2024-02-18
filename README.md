@@ -13,11 +13,26 @@ Install this plugin in the same environment as Datasette.
 ```bash
 datasette install datasette-unsafe-actor-debug
 ```
+## Configuration
+
+You need to set the following plugin configuration to enable this tool:
+
+```yaml
+plugins:
+  datasette-unsafe-actor-debug:
+    enabled: true
+```
+
+With Datasette 1.0 alpha you can enable it like this:
+```bash
+datasette -s plugins.datasette-unsafe-actor-debug.enabled 1
+```
+
 ## Usage
 
 This plugin adds a public page at `/-/unsafe-actor` that lets you sign into Datasette as _any_ actor.
 
-**Do not deploy this in production.**
+**Do not enable this tool in production!**
 
 ## Development
 

@@ -2,6 +2,11 @@ from datasette import hookimpl, Response
 import json
 
 
+def is_enabled(datasette):
+    plugin_config = datasette.plugin_config("datasette-unsafe-actor-debug") or {}
+    return plugin_config.get("enabled", False)
+
+
 async def unsafe_actor(datasette, request):
     error = ""
 
@@ -35,7 +40,8 @@ async def unsafe_actor(datasette, request):
 
 
 @hookimpl
-def register_routes():
-    return [
-        (r"^/-/unsafe-actor$", unsafe_actor),
-    ]
+def register_routes(datasette):
+    if is_enabled(datasette):
+        return [
+            (r"^/-/unsafe-actor$", unsafe_actor),
+        ]
