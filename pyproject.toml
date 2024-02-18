@@ -1,6 +1,6 @@
 [project]
 name = "datasette-unsafe-actor-debug"
-version = "0.1"
+version = "0.2"
 description = "Debug plugin that lets you imitate any actor"
 readme = "README.md"
 authors = [{name = "Simon Willison"}]
