@@ -32,6 +32,8 @@ datasette -s plugins.datasette-unsafe-actor-debug.enabled 1
 
 This plugin adds a public page at `/-/unsafe-actor` that lets you sign into Datasette as _any_ actor.
 
+This option will also be available through the Datasette global navigation menu.
+
 **Do not enable this tool in production!**
 
 ## Development
