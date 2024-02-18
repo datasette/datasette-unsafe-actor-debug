@@ -3,7 +3,7 @@
 {% block title %}Unsafe actor{% endblock %}
 
 {% block content %}
-<h1>Debugging tool: sign in as an actor</h1>
+<h1>Debugging tool: sign in and imitate an actor</h1>
 
 {% if error %}
 <p style="color: red;">{{ error }}</p>
@@ -20,7 +20,7 @@
 
 <h2>Or use one of these</h2>
 
-{% for name in ["violin", "pelican", "quarry"] %}
+{% for name in ["violin", "pelican", "quarry", "matt", ""] %}
   <form action="/-/unsafe-actor" method="post" style="display: inline">
     <input type="hidden" name="csrftoken" value="{{ csrftoken() }}">
     <input type="hidden" name="actor" value="{&quot;id&quot;: &quot;{{ name }}&quot;}">

@@ -12,6 +12,12 @@ async def test_unsafe_actor_debug(enabled):
             }
         }
     )
+    homepage_response = await datasette.client.get("/")
+    fragment = '<a href="/-/unsafe-actor">Debug: Imitate actor</a>'
+    if enabled:
+        assert fragment in homepage_response.text
+    else:
+        assert fragment not in homepage_response.text
     response = await datasette.client.get("/-/unsafe-actor")
     if not enabled:
         assert response.status_code == 404

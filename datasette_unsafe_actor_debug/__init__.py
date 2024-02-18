@@ -45,3 +45,14 @@ def register_routes(datasette):
         return [
             (r"^/-/unsafe-actor$", unsafe_actor),
         ]
+
+
+@hookimpl
+def menu_links(datasette, actor):
+    if is_enabled(datasette):
+        return [
+            {
+                "href": datasette.urls.path("/-/unsafe-actor"),
+                "label": "Debug: Imitate actor",
+            },
+        ]
