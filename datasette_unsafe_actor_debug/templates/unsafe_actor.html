@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Unsafe actor{% endblock %}
+
+{% block content %}
+<h1>Debugging tool: sign in as an actor</h1>
+
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<form action="/-/unsafe-actor" method="post">
+  <input type="hidden" name="csrftoken" value="{{ csrftoken() }}">
+  <p><label for="actor">Actor JSON</label></p>
+  <p>
+    <textarea name="actor" id="actor" rows="5" cols="80">{% if actor_from_get %}{{ actor_from_get }}{% else %}{"id": "..."}{% endif %}</textarea>
+  </p>
+  <p><input type="submit" value="Sign in as this actor"></p>
+</form>
+
+<h2>Or use one of these</h2>
+
+{% for name in ["violin", "pelican", "quarry"] %}
+  <form action="/-/unsafe-actor" method="post" style="display: inline">
+    <input type="hidden" name="csrftoken" value="{{ csrftoken() }}">
+    <input type="hidden" name="actor" value="{&quot;id&quot;: &quot;{{ name }}&quot;}">
+    <input type="submit" value="{{ name }}">
+  </form>
+{% endfor %}
+
+{% endblock %}

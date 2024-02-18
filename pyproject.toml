@@ -1,0 +1,33 @@
+[project]
+name = "datasette-unsafe-actor-debug"
+version = "0.1"
+description = "Debug plugin that lets you imitate any actor"
+readme = "README.md"
+authors = [{name = "Simon Willison"}]
+license = {text = "Apache-2.0"}
+classifiers=[
+    "Framework :: Datasette",
+    "License :: OSI Approved :: Apache Software License"
+]
+requires-python = ">=3.8"
+dependencies = [
+    "datasette"
+]
+
+[project.urls]
+Homepage = "https://github.com/datasette/datasette-unsafe-actor-debug"
+Changelog = "https://github.com/datasette/datasette-unsafe-actor-debug/releases"
+Issues = "https://github.com/datasette/datasette-unsafe-actor-debug/issues"
+CI = "https://github.com/datasette/datasette-unsafe-actor-debug/actions"
+
+[project.entry-points.datasette]
+unsafe_actor_debug = "datasette_unsafe_actor_debug"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-asyncio"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+
+[tool.setuptools.package-data]
+datasette_unsafe_actor_debug = ["templates/*"]
